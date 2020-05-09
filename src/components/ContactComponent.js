@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup,Label,Input,Col,FormFeedback } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import { Control, LocalForm } from 'react-redux-form'
 class Contact extends Component {
     constructor(props){
         super(props)
@@ -21,58 +21,14 @@ class Contact extends Component {
                 }
             };
 
-            this.handleInputChange = this.handleInputChange.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    validate(firstName, lastName, phoneNum, email){
-        const errors = {
-            firstName: '',
-            lastName: '',
-            phoneNum:'',
-            email:''
-        };
+    
 
-        if (this.state.touched.firstName){
-            if (firstName.length < 2) {
-                errors.firstName = 'First Name must be at least 2 characters.';
-            } else if(firstName.Length > 15) {
-                errors.firstName = 'Fist Name must be 15 or less characters.';
-            }
-        }
-
-        const reg = /^\d+$/;
-        if (this.state.touched.phoneNum && !reg.test(phoneNum,)){
-            errors.phoneNum = 'The phone number should only contain numbers,';
-        }
-
-        if (this.state.touched.email && !email.includes ('@')){
-            errors.email = 'Email should conaint a @'
-        }
-
-        return errors;
-    }
-
-    handleBlur = (field) => () => {
-        this.setState({
-            touched: {...this.state.touched, [field]: true}
-        });
-    }
-
-    handleInputChange(event){
-        const target = event.target;
-        const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmit(event){
-        console.log("Current state is:" + JSON.stringify(this.state));
-        alert("Current state is:" + JSON.stringify(this.state))
-        event.preventDefault();
+    handleSubmit(values){
+        console.log("Current state is:" + JSON.stringify(values));
+        alert("Current state is:" + JSON.stringify(values))
     }
 
     render() {
