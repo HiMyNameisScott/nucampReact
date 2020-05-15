@@ -10,7 +10,7 @@ import {
     ModalHeader,
     ModalBody,
     Label,
-    Button
+    
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { LocalForm, Control, Errors } from "react-redux-form";
